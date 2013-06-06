@@ -1,6 +1,7 @@
 {
-id: 3,
-title: "Unix Network Programming",
-author: "Some Auther",
-description: "Description for Unix Network Programming"
+"id": 3,
+"title": "Unix Network Programming",
+"author": "Some Auther",
+"description": "Description for Unix Network Programming",
+"imgpath": "images/book4.jpg"
 }

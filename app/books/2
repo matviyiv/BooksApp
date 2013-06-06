@@ -1,6 +1,7 @@
 {
-id: 2,
-title: "The C Programming Language",
-author: "Some Auther",
-description: "Description for The C Programming Language"
+"id": 2,
+"title": "The C Programming Language",
+"author": "Some Auther",
+"description": "Description for The C Programming Language",
+"imgpath": "images/book2.jpg"
 }

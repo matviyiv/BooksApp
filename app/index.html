@@ -16,6 +16,7 @@
         <!-- endbuild -->
         <script type="text/javascript" src="scripts/vendor/sinon/sinon.js"></script>
         <script type="text/javascript">
+        function initFakeServer () {
             var server = sinon.fakeServer.create();
             server.autoRespond = true;
             server.xhr.useFilters = true;
@@ -23,7 +24,7 @@
               //whenever the this returns true the request will not faked
               return (url.indexOf('templates')>-1);
             });
-            server.respondWith("GET", "/books",
+            server.respondWith("GET", /books.json$/,
                 [200, { "Content-Type": "application/json" },
                  JSON.stringify(
                     [
@@ -34,7 +35,7 @@
                     )
                 ]  
             );
-            server.respondWith("GET", "/books/1",
+            server.respondWith("GET", /\/books\/1$/,
                 [200, { "Content-Type": "application/json" },
                  JSON.stringify({
                     id: 1,
@@ -45,7 +46,7 @@
                     })
                 ]
             );
-            server.respondWith("GET", "/books/2",
+            server.respondWith("GET", /\/books\/2$/,
                 [200, { "Content-Type": "application/json" },
                  JSON.stringify({
                     id: 2,
@@ -56,7 +57,7 @@
                     })
                 ]
             );
-            server.respondWith("GET", "/books/3",
+            server.respondWith("GET", /\/books\/3$/,
                 [200, { "Content-Type": "application/json" },
                  JSON.stringify({
                     id: 3,
@@ -67,6 +68,8 @@
                     })
                 ]
             );
+        };
+        //initFakeServer();
         </script>
     </head>
     <body>

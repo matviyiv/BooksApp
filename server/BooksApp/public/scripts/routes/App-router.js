@@ -20,28 +20,44 @@ define([
 		},
 
 		list: function() {
-			var that = this;
-			this.bookList.fetch({
-				success: function() {
-					that.bookListView = new BookListView({
-						model: that.bookList
+			var that = this,
+				setEventListeners = function () {
+					$('#content').delegate('a', 'click', function (evt) {
+						var id = $(evt.target).attr('data-id');
+						that.bookDetails.call(that, id);
+						return false;
 					});
-					$('#content').html(that.bookListView.render().el);
-				}
-			});
+				};
+			if (this.bookList.length === 0) {
+				this.bookList.fetch({
+					success: function() {
+						that.bookListView = new BookListView({
+							model: that.bookList
+						});
+						$('#content').html(that.bookListView.render().el);
+						//setEventListeners();
+					}
+				});
+			} else {
+				$('#content').html(that.bookListView.el);
+			}
 		},
 
 		bookDetails: function(id) {
-			var that = this;
-			this.bookList.fetch({
-				url: './books/' + id,
-				dataType: 'json',
-				success: function() {
-					that.bookView = new BookView({
-						model: that.bookList
+			var that = this,
+				details = {},
+				setEventListeners = function () {
+					$('#content').delegate('a', 'click', function (evt) {
+						that.list();
+						return false;
 					});
-					$('#content').html(that.bookView.render().el);
-				}
+				};
+
+			this.bookList.getDetails(id, function (collection) {
+				that.bookView = new BookView({
+					model: collection
+				});
+				$('#content').html(that.bookView.render().el);
 			});
 		}
 

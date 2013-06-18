@@ -6,12 +6,13 @@ define([
 ], function(_, Backbone) {
     'use strict';
 
-    var BookModel = Backbone.Model.extend({
+    var DetailsModel = Backbone.Model.extend({
         defaults: {
             "id": "",
-            "title": ""
+            "title": "",
+            "auther": ""
         }
     });
 
-    return BookModel;
+    return DetailsModel;
 });

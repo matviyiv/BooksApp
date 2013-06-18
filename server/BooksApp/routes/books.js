@@ -20,28 +20,28 @@ exports.list = function(req, res) {
 
 exports.details = function(req, res) {
 	var booksDetails = {
-			1: {
-				"id": 1,
-				"title": "The Art of Computer Programming",
-				"author": "Donald Knuth",
-				"description": "A classic of computer science literature.",
-				"imgpath": "images/book1.jpg"
-			}, 
-			2: {
-				"id": 2,
-				"title": "The C Programming Language",
-				"author": "Some Auther",
-				"description": "Description for The C Programming Language",
-				"imgpath": "images/book2.jpg"
-			}, 
-			3: {
-				"id": 3,
-				"title": "Unix Network Programming",
-				"author": "Some Auther",
-				"description": "Description for Unix Network Programming",
-				"imgpath": "images/book4.jpg"
-			}
+		1: {
+			"id": 1,
+			"title": "The Art of Computer Programming",
+			"author": "Donald Knuth",
+			"description": "A classic of computer science literature.",
+			"imgpath": "images/book1.jpg"
 		},
+		2: {
+			"id": 2,
+			"title": "The C Programming Language",
+			"author": "Some Auther",
+			"description": "Description for The C Programming Language",
+			"imgpath": "images/book2.jpg"
+		},
+		3: {
+			"id": 3,
+			"title": "Unix Network Programming",
+			"author": "Some Auther",
+			"description": "Description for Unix Network Programming",
+			"imgpath": "images/book4.jpg"
+		}
+	},
 		responseJSON = {};
 	for (book in booksDetails) {
 		if (book == req.params.id) {

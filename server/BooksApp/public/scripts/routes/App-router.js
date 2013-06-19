@@ -22,10 +22,8 @@ define([
 		list: function() {
 			var that = this,
 				setEventListeners = function () {
-					$('#content').delegate('a', 'click', function (evt) {
-						var id = $(evt.target).attr('data-id');
-						that.bookDetails.call(that, id);
-						return false;
+					$('#bookList').delegate('li', 'click', function (evt) {
+						$(evt.target).closest('li').attr('class', 'active').siblings().removeClass('active');
 					});
 				};
 			if (this.bookList.length === 0) {
@@ -34,12 +32,12 @@ define([
 						that.bookListView = new BookListView({
 							model: that.bookList
 						});
-						$('#content').html(that.bookListView.render().el);
-						//setEventListeners();
+						$('#bookList').prepend(that.bookListView.render().el);
+						setEventListeners();
 					}
 				});
 			} else {
-				$('#content').html(that.bookListView.el);
+				$('#bookList').prepend(that.bookListView.el);
 			}
 		},
 
@@ -52,7 +50,11 @@ define([
 						return false;
 					});
 				};
-
+			// in case if user enters URL directly
+			if ($('#bookList>ul').length === 0) {
+				this.list();
+				//$('#bookList>ul a[data-id="' + id + '"]').closest('li').attr('class', 'active');
+			}
 			this.bookList.getDetails(id, function (collection) {
 				that.bookView = new BookView({
 					model: collection

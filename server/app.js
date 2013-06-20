@@ -11,7 +11,7 @@ var express = require('express')
   , path = require('path');
 
 var app = express();
-
+var publicFolder = path.normalize(__dirname + '/../app');
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -21,14 +21,14 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(publicFolder));
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', express.static(__dirname + "/public/index.html"));
+app.get('/', express.static(publicFolder + "/index.html"));
 app.get('/users', user.list);
 app.get('/books', books.list);
 app.get('/books/:id', books.details);

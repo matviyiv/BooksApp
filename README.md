@@ -1,3 +1,8 @@
 Project created by Matviyiv Nazar
+
 It is Backbone AMD MVC project.
-Server side is not needed because Index.html has fake server Sinon.js
+Folder "app" contains Client side of the application.
+In index.html uncomment line to get Sinon fakeServer working.
+</br>
+Folder "server" containes Express.js server.
+To run it just enter in cmd "\server>npm start"

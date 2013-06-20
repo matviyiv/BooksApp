@@ -9,7 +9,7 @@ define([
     var BookModel = Backbone.Model.extend({
         defaults: {
             "id": "",
-            "title": "fgg"
+            "title": ""
         }
     });
 

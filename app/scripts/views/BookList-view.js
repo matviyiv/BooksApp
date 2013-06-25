@@ -4,16 +4,24 @@ define([
         'jquery',
         'underscore',
         'backbone',
-        'views/BookListItem-view',
+        'views/BookListItem-view'
 ], function($, _, Backbone, BookListItemView) {
     'use strict';
 
     var BookListView = Backbone.View.extend({
         tagName: 'ul',
-        attributes: function () {
+        attributes: function() {
             return {
                 class: 'nav nav-tabs'
             };
+        },
+
+        events: {
+            'click li': 'onItemClick'
+        },
+
+        onItemClick: function(evt) {
+            $(evt.target).closest('li').attr('class', 'active').siblings().removeClass('active');
         },
 
         initialize: function() {

@@ -20,12 +20,8 @@ define([
 		},
 
 		list: function() {
-			var that = this,
-				setEventListeners = function () {
-					$('#bookList').delegate('li', 'click', function (evt) {
-						$(evt.target).closest('li').attr('class', 'active').siblings().removeClass('active');
-					});
-				};
+			var that = this;
+
 			if (this.bookList.length === 0) {
 				this.bookList.fetch({
 					success: function() {
@@ -33,7 +29,6 @@ define([
 							model: that.bookList
 						});
 						$('#bookList').prepend(that.bookListView.render().el);
-						setEventListeners();
 					}
 				});
 			} else {
@@ -43,18 +38,13 @@ define([
 
 		bookDetails: function(id) {
 			var that = this,
-				details = {},
-				setEventListeners = function () {
-					$('#content').delegate('a', 'click', function (evt) {
-						that.list();
-						return false;
-					});
-				};
+				details = {};
+
 			// in case if user enters URL directly
 			if ($('#bookList>ul').length === 0) {
 				this.list();
-				//$('#bookList>ul a[data-id="' + id + '"]').closest('li').attr('class', 'active');
 			}
+
 			this.bookList.getDetails(id, function (collection) {
 				that.bookView = new BookView({
 					model: collection

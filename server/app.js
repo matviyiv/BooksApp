@@ -12,6 +12,7 @@ var express = require('express')
 
 var app = express();
 var publicFolder = path.normalize(__dirname + '/../app');
+var angularFolder = path.normalize(__dirname + '/../angular/app');
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -22,6 +23,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(publicFolder));
+//app.use(express.static(angularFolder));
 
 // development only
 if ('development' == app.get('env')) {

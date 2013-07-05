@@ -1,0 +1,94 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="scripts/vendor/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+        <script type="text/javascript" src="scripts/vendor/sinon/sinon.js"></script>
+        <script type="text/javascript">
+        function initFakeServer () {
+            var server = sinon.fakeServer.create();
+            server.autoRespond = true;
+            server.xhr.useFilters = true;
+            server.xhr.addFilter(function(method, url) {
+              //whenever the this returns true the request will not faked
+              return (url.indexOf('templates')>-1);
+            });
+            server.respondWith("GET", /books$/,
+                [200, { "Content-Type": "application/json" },
+                 JSON.stringify(
+                    [
+                    { "id": 1, "title": "The Art of Computer Programming" },
+                    { "id": 2, "title": "The C Programming Language" },
+                    { "id": 3, "title": "Unix Network Programming" }
+                    ]
+                    )
+                ]  
+            );
+            server.respondWith("GET", /\/books\/1$/,
+                [200, { "Content-Type": "application/json" },
+                 JSON.stringify({
+                    id: 1,
+                    title: "The Art of Computer Programming",
+                    author: "Donald Knuth",
+                    description: "A classic of computer science literature.",
+                    imgpath: 'images/book1.jpg'
+                    })
+                ]
+            );
+            server.respondWith("GET", /\/books\/2$/,
+                [200, { "Content-Type": "application/json" },
+                 JSON.stringify({
+                    id: 2,
+                    title: "The C Programming Language",
+                    author: "Some Auther",
+                    description: "Description for The C Programming Language",
+                    imgpath: 'images/book2.jpg'
+                    })
+                ]
+            );
+            server.respondWith("GET", /\/books\/3$/,
+                [200, { "Content-Type": "application/json" },
+                 JSON.stringify({
+                    id: 3,
+                    title: "Unix Network Programming",
+                    author: "Some Auther",
+                    description: "Description for Unix Network Programming",
+                    imgpath: 'images/book4.jpg'
+                    })
+                ]
+            );
+        };
+        // uncomment line below for Sinon server to work
+        //initFakeServer();
+        </script>
+    </head>
+    <body>
+
+       <div class="container">
+            <div class="alert alert-info">
+                <a href="../"><p class="text-center">Web Application made with <strong>Backbone</strong> AMD MVC</p></a>
+            </div>
+
+                <div class="tabbable tabs-left" id='bookList'>
+                    <div class="tab-content" id="content">
+                    </div>
+                </div>
+            
+        </div>
+
+        <!-- build:js scripts/main.js -->
+        <script data-main="scripts/main" src="scripts/vendor/requirejs/require.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

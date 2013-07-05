@@ -1,0 +1,12 @@
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+.navbar-search {
+    margin-right: 10px;
+}
+
+.tabs-left {
+    clear: both;
+}

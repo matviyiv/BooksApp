@@ -10,13 +10,13 @@ define([
 
 	var BookCollection = Backbone.Collection.extend({
 		model: BookModel,
-		url: './books',
+		url: '../books',
 		bookDetails: {},
 		getDetails: function (id, callback) {
 			var that = this;
 			if (this.bookDetails[id] === undefined) {
 				this.bookDetails[id] = new DetailsCollection();
-				this.bookDetails[id].url = './books/' + id;
+				this.bookDetails[id].url = '../books/' + id;
 				this.bookDetails[id].fetch({
 					success: function () {
 						callback(that.bookDetails[id]);

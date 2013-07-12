@@ -1,25 +1,23 @@
-<div ng-controller="MainCtrl">
-	<div class="container">
-	    <div class="alert alert-info">
-	        <a href="../"><p class="text-center">Web Application made with <strong>AngularJS</strong></p></a>
-	    </div>
-	    <div style="width:100%">
-	    	<form class="navbar-search" >
-		 		<input ng-model="query" type="text" class="search-query" placeholder="Search">
-			</form>
-			Sort by:
-			<select ng-model="orderProp">
-			  <option value="title">Alphabetical</option>
-			  <option value="pages">Number of Pages</option>
-			</select>
-		</div>
-        <div class="tabbable tabs-left" >
-			</br>
-        	<ul class="nav nav-tabs">
-		      <li ng-repeat="book in booksList | filter:query | orderBy:orderProp">
-		      	<a href="#/books/{{book.id}}">{{book.title}}</a></li>
-		  	</ul>
-            <div class="tab-content" id="content"></div>
-        </div>  
+<div ng-controller="MainCtrl" class="container">
+    <div class="alert alert-info">
+        <a href="../"><p class="text-center">Web Application made with <strong>AngularJS</strong></p></a>
+    </div>
+    <div style="width:100%">
+    	<form class="navbar-search" >
+	 		<input ng-model="query" type="text" class="search-query" placeholder="Search">
+		</form>
+		Sort by:
+		<select ng-model="orderProp">
+		  <option value="-title">Alphabetical</option>
+		  <option value="pages">Number of Pages</option>
+		</select>
 	</div>
+    <div class="tabbable tabs-left" >
+		</br>
+    	<ul class="nav nav-tabs" >
+	      <li ng-repeat="book in booksList | filter:query | orderBy:orderProp" ng-class="{active: book == selected}">
+	      	<a href="#/books/{{book.id}}" ng-click="bookClick(book)">{{book.title}}</a></li>
+	  	</ul>
+        <div class="tab-content" id="content" ui-view></div>
+    </div>
 </div>

@@ -1,17 +1,18 @@
 'use strict';
 
-angular.module('BooksApp', [])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
+angular.module('BooksApp', ['ui.state', 'bookFilters'])
+  .config(function($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise("/books");
+    $stateProvider
+    .state('books', {
+        url: "/books",
+        templateUrl: "views/main.html",
         controller: 'MainCtrl'
-      })
-      .when('/App', {
-        templateUrl: 'views/App.html',
-        controller: 'AppCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
+    })
+      .state('books.details', {
+          url: "/:bookId",
+          templateUrl: "views/book-detail.html",
+          controller: 'BookDetailCtrl'
       });
-  });
+});

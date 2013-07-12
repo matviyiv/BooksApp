@@ -1,19 +1,21 @@
 'use strict';
 
 angular.module('BooksApp')
-	.controller('MainCtrl', function($scope) {
-	$scope.booksList = [{
-			"id": 1,
-			"title": "The Art of Computer Programming",
-			"pages": 100
-		}, {
-			"id": 2,
-			"title": "The C Programming Language",
-			"pages": 150
-		}, {
-			"id": 3,
-			"title": "Unix Network Programming",
-			"pages": 60
-		}
-	];
-});
+	.controller('MainCtrl', function($scope, $http) {
+		$http.get('../books').success(function(data) {
+			$scope.booksList = data;
+		});
+
+		$scope.orderProp = 'pages';
+
+		$scope.bookClick = function(book) {
+			$scope.selected = book;
+		};
+	})
+	.controller('BookDetailCtrl', function($scope, $http, $stateParams) {
+		var bookId = $stateParams.bookId;
+
+		$http.get('../books/' + bookId).success(function(data) {
+			$scope.book = data;
+		});
+	});

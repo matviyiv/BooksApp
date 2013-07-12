@@ -25,21 +25,24 @@ exports.details = function(req, res) {
 			"title": "The Art of Computer Programming",
 			"author": "Donald Knuth",
 			"description": "A classic of computer science literature.",
-			"imgpath": "images/book1.jpg"
+			"imgpath": "images/book1.jpg",
+			"present": true
 		},
 		2: {
 			"id": 2,
 			"title": "The C Programming Language",
 			"author": "Some Auther",
 			"description": "Description for The C Programming Language",
-			"imgpath": "images/book2.jpg"
+			"imgpath": "images/book2.jpg",
+			"present": false
 		},
 		3: {
 			"id": 3,
 			"title": "Unix Network Programming",
 			"author": "Some Auther",
 			"description": "Description for Unix Network Programming",
-			"imgpath": "images/book4.jpg"
+			"imgpath": "images/book4.jpg",
+			"present": true
 		}
 	},
 		responseJSON = {};

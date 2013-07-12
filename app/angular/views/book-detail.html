@@ -1,0 +1,13 @@
+<div ng-controller="BookDetailCtrl">
+	<p class="lead">
+		<hr>
+		<strong>Title:</strong> {{book.title}} <br/>
+		<strong>Author:</strong> {{book.author}} <br/>
+		<hr>
+		<img ng-src="../{{book.imgpath}}" /><br/>
+		<hr>
+		<strong>Description:</strong> {{book.description}} <br/>
+		<hr>
+		<strong>Available:</strong> {{book.present | checkmark}} <br/>
+	</p>
+</div>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('BooksApp', ['ui.state', 'bookFilters'])
+angular.module('BooksApp', ['ui.state', 'bookFilters', 'bookServices'])
   .config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise("/books");

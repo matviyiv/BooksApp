@@ -3,14 +3,16 @@
         <a href="../"><p class="text-center">Web Application made with <strong>AngularJS</strong></p></a>
     </div>
     <div style="width:100%">
-    	<form class="navbar-search" >
-	 		<input ng-model="query" type="text" class="search-query" placeholder="Search">
+    	<form class="navbar-search form-inline" >
+    		<label for="searchField">Search for:</label>
+	 		<input ng-model="query" type="text" class="search-query" placeholder="Search" name="searchField">
+	 		<label for="oredFilter">Sort by:</label>
+			<select ng-model="orderProp" name="oredFilter">
+			  <option value="-title">Alphabetical</option>
+			  <option value="pages">Number of Pages</option>
+			</select>
 		</form>
-		Sort by:
-		<select ng-model="orderProp">
-		  <option value="-title">Alphabetical</option>
-		  <option value="pages">Number of Pages</option>
-		</select>
+		
 	</div>
     <div class="tabbable tabs-left" >
 		</br>

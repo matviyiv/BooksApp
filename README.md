@@ -1,6 +1,6 @@
 Project created by Matviyiv Nazar
 
-It is Backbone AMD MVC project.
+It is test project where I have played with Backbone AMD MVC and AngularJS.
 Folder "app" contains Client side of the application.
 In index.html uncomment line to get Sinon fakeServer working.
 </br>

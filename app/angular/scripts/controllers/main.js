@@ -1,6 +1,9 @@
 'use strict';
 
 angular.module('BooksApp')
+	.factory('CacheAjax', function($cacheFactory) {
+	    return $cacheFactory('cacheAjax');
+	})
 	.controller('MainCtrl', function($scope, Book) {
 
 		$scope.booksList = Book.query();
@@ -10,12 +13,17 @@ angular.module('BooksApp')
 			$scope.selected = book;
 		};
 	})
-	.controller('BookDetailCtrl', function($scope, $stateParams, Book) {
-		var bookId = $stateParams.bookId;
+	.controller('BookDetailCtrl', function($scope, $stateParams, Book, CacheAjax) {
+		var bookId = $stateParams.bookId,
+			cachedResponse = CacheAjax.get('bookId-' + bookId);
 
-		$scope.book = Book.get({
-			bookId: $stateParams.bookId
-		}, function(book) {
-			//console.log(book);
-		});
+		if (cachedResponse) {
+			$scope.book = cachedResponse;
+		} else {
+			$scope.book = Book.get({
+				bookId: $stateParams.bookId
+			}, function(book) {
+				CacheAjax.put('bookId-' + bookId, book);
+			});
+		}
 	});

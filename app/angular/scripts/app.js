@@ -10,9 +10,9 @@ angular.module('BooksApp', ['ui.state', 'bookFilters', 'bookServices'])
         templateUrl: "views/main.html",
         controller: 'MainCtrl'
     })
-      .state('books.details', {
-          url: "/:bookId",
-          templateUrl: "views/book-detail.html",
-          controller: 'BookDetailCtrl'
-      });
+    .state('books.details', {
+        url: "/:bookId",
+        templateUrl: "views/book-detail.html",
+        controller: 'BookDetailCtrl'
+    });
 });
